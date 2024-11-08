@@ -1,12 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
     function displayCartItems() {
-        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        console.log('Попытка получить элемент с ID cart-items');
         const cartContainer = document.getElementById('cart-items');
+        console.log('cartContainer:', cartContainer); // Это должно показать, что cartContainer не null
         
         // Очищаем текущее содержимое
         cartContainer.innerHTML = '';
         
         // Отображаем товары
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
         cart.forEach(item => {
             const itemElement = document.createElement('div');
             itemElement.innerHTML = `
@@ -14,11 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 <button class="remove-item" data-id="${item.id}">Удалить</button>
             `;
             cartContainer.appendChild(itemElement);
-        });
-
-        // Добавляем обработчики удаления товаров
-        document.querySelectorAll('.remove-item').forEach(button => {
-            button.addEventListener('click', removeFromCart);
         });
     }
 

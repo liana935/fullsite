@@ -17,12 +17,12 @@ function fetchData() {
 }
 
 function renderProducts(products) {
-    const contentContainer = document.getElementById('content'); // Предполагается, что у вас есть элемент с id="content"
+    const contentContainer = document.getElementById('content');
     contentContainer.innerHTML = ''; // Очищаем контейнер перед добавлением новых элементов
 
     products.forEach(product => {
         const productCard = document.createElement('div');
-        productCard.className = 'product-card'; // Применяем класс для стилизации
+        productCard.className = 'product-card';
 
         // Используем ваш формат для отрисовки
         productCard.innerHTML = `
@@ -36,19 +36,16 @@ function renderProducts(products) {
                 <p>Описание: <span class="font-semibold">${product.description}</span></p>
                 <p>Количество: <span class="font-semibold">${product.quantity}</span></p>
             </div>
-            <button class="add-to-cart" data-id="${product.id}" data-name="${product.name}" data-price="${product.price}">Добавить в корзину</button>
+            <button class="add-to-cart" data-id="${product.id}" data-name="${product.name}">Добавить в корзину</button>
         `;
 
-        contentContainer.appendChild(productCard); // Добавляем элемент в контейнер
+        contentContainer.appendChild(productCard);
     });
 }
-let cartId = 1;
-// Функция для добавления товара в корзину
 function addToCart(product) {
-    // Получаем текущую корзину из localStorage
+    console.log('Добавление товара в корзину:', product); // Отладочное сообщение
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     
-    // Проверяем, есть ли уже такой товар в корзине
     const existingProductIndex = cart.findIndex(item => item.id === product.id);
     
     if (existingProductIndex > -1) {
@@ -59,17 +56,36 @@ function addToCart(product) {
         cart.push({
             id: product.id,
             name: product.name,
-            price: product.price,
-            quantity: 1
+            quantity: 1 // Указываем количество
         });
     }
     
-    // Сохраняем обновленную корзину в localStorage
-    localStorage.setItem('cart', JSON.stringify(cart));
-    
-    // Обновляем отображение корзины
-    updateCartDisplay();
+    localStorage.setItem('cart', JSON.stringify(cart)); // Сохраняем корзину в localStorage
+    updateCartDisplay(); // Обновляем отображение корзины
 }
+function updateCartDisplay() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+    const cartDisplayElement = document.getElementById('cart-count'); // Предположим, что у вас есть элемент для отображения количества товаров в корзине
+    
+    if (cartDisplayElement) {
+        cartDisplayElement.textContent = cartCount;
+    }
+}
+let cartId = 1;
+// Функция для добавления товара в корзину
+document.addEventListener('DOMContentLoaded', () => {
+    fetchData(); // Вызываем функцию для получения данных о продуктах
 
-// Вызов функции для получения данных
-fetchData();
+    // Обработчик события для добавления товара в корзину
+    document.addEventListener('click', function(event) {
+        if (event.target.classList.contains('add-to-cart')) {
+            const product = {
+                id: event.target.dataset.id,
+                name: event.target.dataset.name
+            };
+            addToCart(product); // Вызов функции добавления товара в корзину
+        }
+    });
+});
+
