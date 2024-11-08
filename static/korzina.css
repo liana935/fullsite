@@ -1,0 +1,133 @@
+body {
+    background-image: url('https://i.pinimg.com/originals/36/8c/61/368c6164370c3726248594334bb16568.jpg');
+    background-size: auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: 'Roboto', sans-serif;
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px auto;
+    max-width: 1200px;
+}
+
+header {
+    background-color: #000000;
+    border-radius: 10px;
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s;
+    margin-bottom: 20px;
+}
+
+header h1 a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+header h1 a:hover {
+    color: #ff69b4;
+}
+
+#content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.cart-item {
+    background-color: white;
+    border: 1px solid #ffcccc;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.cart-item:hover {
+    transform: scale(1.05);
+    background-color: #ff99cc;
+}
+
+.cart-item img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+.cart-item h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    text-align: center;
+    color: #ff69b4;
+}
+
+.cart-item p {
+    margin: 5px 0;
+    font-size: 1rem;
+    color: #ff69b4;
+}
+
+.cart-item .price {
+    font-weight: 700;
+    color: #000000;
+}
+
+#checkout-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s, transform 0.2s;
+    display: block;
+    margin: 20px auto;
+}
+#clear-cart-button {
+    background-color: #ff0000;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s, transform 0.2s;
+    display: block;
+    margin: 20px auto;
+}
+
+#clear-cart-button:hover {
+    background-color: #cc0000;
+    transform: scale(1.05);
+}
+
+#clear-cart-button:active {
+    transform: scale(0.95);
+}
+#checkout-button:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+#checkout-button:active {
+    transform: scale(0.95);
+}
+
+@media (max-width: 768px) {
+    .container {
+        margin: 10px;
+    }
+
+    #content {
+        grid-template-columns: 1fr;
+    }
+}
