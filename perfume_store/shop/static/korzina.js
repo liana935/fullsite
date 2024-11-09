@@ -4,30 +4,29 @@ document.addEventListener("DOMContentLoaded", function() {
     const checkoutButton = document.getElementById('checkout-button');
 
     // Функция для обновления отображения корзины
-    // Функция для обновления отображения корзины
-function updateCartDisplay() {
-    cartItemsContainer.innerHTML = ''; // Очищаем контейнер
-    if (cart.length === 0) {
-        cartItemsContainer.innerHTML = '<p>Корзина пуста.</p>';
-    } else {
-        cart.forEach(item => {
-            const cartItem = document.createElement('div');
-            cartItem.classList.add('cart-item');
-            cartItem.innerHTML = `
-                <img src="${item.photo_url}" alt="${item.name}" class="cart-item-image" /> <!-- Добавляем изображение -->
-                <h3>${item.name}</h3>
-                <p>Цена: ${item.price} ₽</p>
-                <p>Количество: 
-                    <button class="decrease-quantity" data-product-id="${item.id}">-</button> 
-                    ${item.quantity} 
-                    <button class="increase-quantity" data-product-id="${item.id}">+</button>
-                </p>
-                <button class="remove-from-cart-button" data-product-id="${item.id}">Удалить</button>
-            `;
-            cartItemsContainer.appendChild(cartItem);
-        });
+    function updateCartDisplay() {
+        cartItemsContainer.innerHTML = ''; // Очищаем контейнер
+        if (cart.length === 0) {
+            cartItemsContainer.innerHTML = '<p>Корзина пуста.</p>';
+        } else {
+            cart.forEach(item => {
+                const cartItem = document.createElement('div');
+                cartItem.classList.add('cart-item');
+                cartItem.innerHTML = `
+                    <img src="${item.photo_url}" alt="${item.name}" class="cart-item-image" />
+                    <h3>${item.name}</h3>
+                    <p>Цена: ${item.price} ₽</p>
+                    <p>Количество: 
+                        <button class="decrease-quantity" data-product-id="${item.id}">-</button> 
+                        ${item.quantity} 
+                        <button class="increase-quantity" data-product-id="${item.id}">+</button>
+                    </p>
+                    <button class="remove-from-cart-button" data-product-id="${item.id}">Удалить</button>
+                `;
+                cartItemsContainer.appendChild(cartItem);
+            });
+        }
     }
-}
 
     // Функция для добавления товара в корзину
     function addToCart(product) {
@@ -90,13 +89,10 @@ function updateCartDisplay() {
             alert('Ваша корзина пуста. Добавьте товары перед оформлением заказа.');
             return;
         }
-        // Здесь можно добавить логику для оформления заказа, например, отправить данные на сервер
-        alert('Заказ оформлен! Спасибо за покупку!');
-        cart.length = 0; // Очищаем корзину после оформления заказа
-        localStorage.removeItem('cart'); // Удаляем корзину из localStorage
-        updateCartDisplay();
+        // Перенаправление на страницу оформления заказа
+        window.location.href = '/checkout'; // Замените '/checkout' на фактический URL вашей страницы оформления заказа
     });
 
-    // И нициализация отображения корзины при загрузке страницы
+    // Инициализация отображения корзины при загрузке страницы
     updateCartDisplay();
 });

@@ -1,0 +1,54 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f0f8;
+    color: #333;
+}
+
+.order-card {
+    background-color: #ffe6f2;
+    border: 2px solid #ff66b2;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 600px; /* Увеличиваем максимальную ширину */
+    width: 100%; /* Устанавливаем ширину на 100% для адаптивности */
+    margin: 50px auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #ff66b2;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ff66b2;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #ff66b2;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #ff3385;
+}
+
+.hidden {
+    display: none;
+}
+
+#message {
+    margin-top: 20px;
+    color: #28a745;
+}
