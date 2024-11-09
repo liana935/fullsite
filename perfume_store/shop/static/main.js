@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const apiUrl = 'api/products'; // Замените на реальный URL вашего API
+    const apiUrl = '/api/product'; // Замените на реальный URL вашего API
     const productContainer = document.querySelector('.product-container');
 
     fetch(apiUrl)
@@ -28,10 +28,41 @@ document.addEventListener("DOMContentLoaded", function() {
                     `;
                     productContainer.appendChild(productCard);
                 });
+
+                // Добавляем обработчик событий для кнопок "Добавить в корзину"
+                const addToCartButtons = document.querySelectorAll('.add-to-cart-button');
+                addToCartButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        const productId = this.getAttribute('data-product-id');
+                        const product = data.find(p => p.id == productId); // Находим продукт по ID
+
+                        // Добавляем продукт в корзину
+                        addToCart(product);
+                    });
+                });
             }
         })
         .catch(error => {
             console.error('Ошибка:', error);
             productContainer.innerHTML = '<p>Произошла ошибка при загрузке продуктов.</p>';
         });
+
+    // Функция для добавления товара в корзину
+    function addToCart(product) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || []; // Получаем корзину из localStorage или создаем новую
+
+        // Проверяем, есть ли уже этот продукт в корзине
+        const existingProductIndex = cart.findIndex(item => item.id === product.id);
+        if (existingProductIndex > -1) {
+            // Если продукт уже есть, увеличиваем количество
+            cart[existingProductIndex].quantity += 1;
+        } else {
+            // Если продукта нет, добавляем его в корзину с количеством 1
+            cart.push({ ...product, quantity: 1 });
+        }
+
+        // Сохраняем обновленную корзину в localStorage
+        localStorage.setItem('cart', JSON.stringify(cart));
+        alert(`${product.name} добавлен в корзину!`); // Уведомление о добавлении
+    }
 });

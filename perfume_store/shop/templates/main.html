@@ -6,28 +6,20 @@
     <title>Магазин Парфюмерии</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'main.css' %}">
-    <script src="{% static 'main.js' %}"></script>
+    <script src="{% static 'main.js' %}" defer></script> <!-- Используем defer для загрузки скрипта после HTML -->
 </head>
 <body>
-    <header class="header">
-        <div class="header-container">
-            <div class="phone-number">Телефон: +7 (999) 999-99-99</div>
-            <div class="cart-button">
-                <a href="{% url 'cart' %}">Корзина</a>
-            </div>
+    <header class="headerss">
+        <div class="phone">Телефон: +7 (999) 999-99-99</div>
+        <div class="nav-links">
+            <a href="{% url 'main' %}" class="main-button">Главная</a>
+            <a href="{% url 'cart' %}" class="cart-button">Корзина</a>
         </div>
     </header>
     
     <main>
         <div class="product-container">
-            {% for product in products %}
-            <div class="product-card">
-                <img src="{{ product.image_url }}" alt="{{ product.name }}" class="product-image">
-                <h2 class="product-name">{{ product.name }}</h2>
-                <p class="product-price">{{ product.price }} ₽</p>
-                <button class="add-to-cart-button" data-product-id="{{ product.id }}">Добавить в корзину</button>
-            </div>
-            {% endfor %}
+            <!-- Продукты будут загружены динамически через JavaScript -->
         </div>
     </main>
 
