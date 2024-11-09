@@ -16,15 +16,15 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         // Извлекаем данные корзины из LocalStorage
-        const id = JSON.parse(localStorage.getItem('cart')) || null; // Измените ключ на тот, который вы используете
+        const cartData = JSON.parse(localStorage.getItem('Cart')) || []; // Получаем данные корзины
 
         // Создаем объект заказа
         const order = {
             name: name,
-            phone_number: phone, // Изменено на 'phone_number'
+            phone_number: phone,
             email: email,
-            delivery_address: address, // Изменено на 'delivery_address'
-            id: id // Добавляем данные корзины
+            delivery_address: address,
+            id: cartData,
         };
 
         // Отправляем данные заказа на сервер
