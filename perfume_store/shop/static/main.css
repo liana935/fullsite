@@ -21,7 +21,30 @@ header {
     align-items: center;
     justify-content: center;
 }
+.header-container {
+    display: flex;
+    justify-content: space-between; /* Размещает элементы по краям */
+    align-items: center; /* Выравнивает элементы по вертикали */
+    padding: 10px;
+}
 
+.phone-number {
+    font-size: 16px; /* Размер шрифта для номера телефона */
+    color: white; /* Цвет текста */
+
+}
+
+.cart-button a {
+    color: white; /* Цвет текста для ссылки */
+    text-decoration: none; /* Убирает подчеркивание */
+    background-color: #ff66b2; /* Цвет фона для кнопки */
+    padding: 10px 15px; /* Отступы внутри кнопки */
+    border-radius: 5px; /* Скругление углов */
+}
+
+.cart-button a:hover {
+    background-color: #ff3385; /* Цвет фона при наведении */
+}
 .product-container {
     display: flex;
     flex-wrap: wrap;
