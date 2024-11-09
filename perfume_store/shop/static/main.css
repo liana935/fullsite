@@ -1,0 +1,77 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8e1e1; /* Светлый розовый фон */
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+header {
+    background-color: #ff66b2; /* Яркий розовый цвет */
+    padding: 20px;
+    text-align: center;
+    color: white;
+}
+.header {
+    background-image: url('https://avatars.dzeninfra.ru/get-zen_doc/1349008/pub_63879286111476652d5f0090_63879e7ddb3c406308ffc8bb/scale_1200'); /* Замените на путь к вашему изображению */
+    background-size: auto;
+    background-position: center;
+    height: 100px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+}
+
+.product-card {
+    background-color: white;
+    border: 1px solid #ff66b2; /* Розовая рамка */
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    padding: 15px;
+    width: 200px; /* Ширина карточки товара */
+    text-align: center;
+}
+
+.product-image {
+    width: 100%; /* Адаптивное изображение */
+    border-radius: 10px;
+}
+
+.product-name {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.product-price {
+    font-size: 16px;
+    color: #ff66b2; /* Розовый цвет для цены */
+}
+
+.add-to-cart-button {
+    background-color: #ff66b2; /* Розовая кнопка */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-to-cart-button:hover {
+    background-color: #ff3385; /* Темнее при наведении */
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #ff66b2; /* Розовый цвет подвала */
+    color: white;
+}

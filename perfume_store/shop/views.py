@@ -126,3 +126,14 @@ class OrderDetailAPIView(APIView):
             return JsonResponse({"message": "Order deleted"}, status=204)
         except Order.DoesNotExist:
             return JsonResponse({"error": "Order not found"}, status=404)
+def cart_view(request):
+    return render(request, 'korzina.html')
+
+def main_view(request):
+    products = [
+        {'id': 1, 'name': 'Парфюм 1', 'price': 1500, 'image_url': 'path/to/image1.jpg'},
+        {'id': 2, 'name': 'Парфюм 2', 'price': 2000, 'image_url': 'path/to/image2.jpg'},
+        {'id': 3, 'name': 'Парфюм 3', 'price': 2500, 'image_url': 'path/to/image3.jpg'},
+        # Добавьте больше товаров по мере необходимости
+    ]
+    return render(request, 'main.html', {'products': products})
