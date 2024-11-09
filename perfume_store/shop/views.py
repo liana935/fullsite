@@ -134,3 +134,7 @@ def main_view(request):
        
     ]
     return render(request, 'main.html', {'products': products})
+def zakaz_view(request):
+    return render(request, 'zakaz.html')
+def yspex_view(request):
+    return render(request, 'yspex.html')

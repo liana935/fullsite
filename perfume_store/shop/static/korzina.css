@@ -6,45 +6,81 @@ body {
     padding: 0;
 }
 
-/* Стили для контейнера корзины */
-.cart-container {
-    padding: 20px;
-    background-color: white; /* Белый фон для корзины */
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    margin: 20px auto;
-    max-width: 800px; /* Максимальная ширина контейнера */
-}
-
-/* Стили для заголовка корзины */
-.cart-container h1 {
-    text-align: center;
-    color: #ff66b2; /* Розовый цвет заголовка */
-    margin-bottom: 20px;
-}
-
-/* Стили для кнопок */
-button {
-    background-color: #ff66b2; /* Розовая кнопка */
+.header {
+    background-image: url('https://avatars.dzeninfra.ru/get-zen_doc/1349008/pub_63879286111476652d5f0090_63879e7ddb3c406308ffc8bb/scale_1200'); /* Замените на путь к вашему изображению */
+    background-size: cover;
+    background-position: center;
+    height: 100px;
     color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none; /* Убираем подчеркивание */
-    font-size: 18px;
-    margin: 10px 5px; /* Отступы между кнопками */
-    transition: background-color 0.3s, transform 0.2s; /* Плавный переход для фона и эффекта нажатия */
+    display: flex;
+    align-items: center;
 }
 
+.phone-number {
+    font-size: 16px; /* Размер шрифта для номера телефона */
+    color: white; /* Цвет текста */
+}
+
+/* Стили для контейнера корзины */
+#cart-items {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Отступы между карточками */
+}
+
+/* Стиль для каждой карточки товара */
+.cart-item {
+    display: flex;
+    justify-content: space-between; /* Размещаем элементы по краям */
+    align-items: center; /* Выравнивание по центру по вертикали */
+    border: 1px solid #ff66b2; /* Розовая рамка вокруг карточки */
+    padding: 10px; /* Внутренние отступы */
+    border-radius: 5px; /* Закругленные углы */
+    background-color: #ffe6f2; /* Светло-розовый цвет фона карточки */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Тень для карточки */
+    margin-bottom: 10px; /* Отступ снизу для карточек товара */
+}
+
+/* Стиль для изображения товара */
+.cart-item-image {
+    width: 80px; /* Ширина изображения */
+    height: 80px; /* Высота изображения */
+    object-fit: cover; /* Обрезка изображения, чтобы оно заполнило контейнер */
+    margin-right: 15px; /* Отступ справа от изображения */
+    border-radius: 5px; /* Закругленные углы изображения */
+}
+
+/* Стиль для заголовка товара */
+.cart-item h3 {
+    font-size: 1.2em; /* Размер шрифта заголовка */
+    margin: 0; /* Убираем отступы */
+}
+
+/* Стиль для текста цены и количества */
+.cart-item p {
+    margin: 5px 0; /* Отступы для параграфов */
+}
+
+/* Стиль для кнопок */
+button {
+    text-decoration: none;
+    background-color: #ff66b2; /* Розовый цвет фона кнопок */
+    color: white; /* Цвет текста кнопок */
+    border: none; /* Убираем границу */
+    border-radius: 5px; /* Закругленные углы кнопок */
+    padding: 5px 10px; /* Внутренние отступы кнопок */
+    cursor: pointer; /* Курсор в виде руки при наведении */
+    transition: background-color 0.3s, transform 0.1s; /* Плавный переход цвета фона и эффекта нажатия */
+}
+
+/* Эффект при наведении на кнопки */
 button:hover {
     background-color: #ff3385; /* Темнее при наведении */
-    transform: translateY(-2px); /* Эффект поднятия при наведении */
 }
 
+/* Эффект при нажатии на кнопки */
 button:active {
-    transform: translateY(0); /* Возврат в исходное положение при нажатии */
+    transform: scale(0.95); /* Уменьшаем кнопку при нажатии */
 }
 
 /* Стили для навигационного меню */
@@ -72,8 +108,25 @@ nav ul li a {
 
 /* Стили для футера */
 footer {
-    text-align: center;
+    text-align:center;
     padding: 10px;
-    background-color: #ff66b2; /* Розовый цвет подвала */
-    color: rgb(255, 255, 255);
+    background-color:#ff66b2;
+    color:rgb(255, 255, 255);
+    margin-top:20px; 
+}
+
+/* Стили для контейнера кнопок увеличения количества товара */
+.quantity-buttons {
+    display: flex;
+    align-items: center; /* Выравнивание по центру по вертикали */
+}
+
+/* Отступы для кнопок увеличения количества товара */
+.quantity-buttons button {
+    margin-right: 5px; /* Отступ между кнопками */
+}
+
+/* Кнопка "Удалить" */
+.remove-button {
+    margin-left: 10px; /* Отступ слева для кнопки "Удалить" */
 }

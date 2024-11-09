@@ -1,27 +1,33 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const cart = []; // Массив для хранения товаров в корзине
+    const cart = JSON.parse(localStorage.getItem('cart')) || []; // Загружаем корзину из localStorage
     const cartItemsContainer = document.getElementById('cart-items');
     const checkoutButton = document.getElementById('checkout-button');
 
     // Функция для обновления отображения корзины
-    function updateCartDisplay() {
-        cartItemsContainer.innerHTML = ''; // Очищаем контейнер
-        if (cart.length === 0) {
-            cartItemsContainer.innerHTML = '<p>Корзина пуста.</p>';
-        } else {
-            cart.forEach(item => {
-                const cartItem = document.createElement('div');
-                cartItem.classList.add('cart-item');
-                cartItem.innerHTML = `
-                    <h3>${item.name}</h3>
-                    <p>Цена: ${item.price} ₽</p>
-                    <p>Количество: <button class="decrease-quantity" data-product-id="${item.id}">-</button> ${item.quantity} <button class="increase-quantity" data-product-id="${item.id}">+</button></p>
-                    <button class="remove-from-cart-button" data-product-id="${item.id}">Удалить</button>
-                `;
-                cartItemsContainer.appendChild(cartItem);
-            });
-        }
+    // Функция для обновления отображения корзины
+function updateCartDisplay() {
+    cartItemsContainer.innerHTML = ''; // Очищаем контейнер
+    if (cart.length === 0) {
+        cartItemsContainer.innerHTML = '<p>Корзина пуста.</p>';
+    } else {
+        cart.forEach(item => {
+            const cartItem = document.createElement('div');
+            cartItem.classList.add('cart-item');
+            cartItem.innerHTML = `
+                <img src="${item.photo_url}" alt="${item.name}" class="cart-item-image" /> <!-- Добавляем изображение -->
+                <h3>${item.name}</h3>
+                <p>Цена: ${item.price} ₽</p>
+                <p>Количество: 
+                    <button class="decrease-quantity" data-product-id="${item.id}">-</button> 
+                    ${item.quantity} 
+                    <button class="increase-quantity" data-product-id="${item.id}">+</button>
+                </p>
+                <button class="remove-from-cart-button" data-product-id="${item.id}">Удалить</button>
+            `;
+            cartItemsContainer.appendChild(cartItem);
+        });
     }
+}
 
     // Функция для добавления товара в корзину
     function addToCart(product) {
@@ -31,6 +37,7 @@ document.addEventListener("DOMContentLoaded", function() {
         } else {
             cart.push({ ...product, quantity: 1 }); // Добавляем новый товар
         }
+        localStorage.setItem('cart', JSON.stringify(cart)); // Сохраняем корзину в localStorage
         updateCartDisplay();
     }
 
@@ -53,6 +60,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const existingItem = cart.find(item => item.id == productId);
             if (existingItem) {
                 existingItem.quantity += 1; // Увеличиваем количество
+                localStorage.setItem('cart', JSON.stringify(cart)); // Сохраняем изменения
                 updateCartDisplay();
             }
         } else if (event.target.classList.contains('decrease-quantity')) {
@@ -63,12 +71,14 @@ document.addEventListener("DOMContentLoaded", function() {
                 } else {
                     cart.splice(cart.indexOf(existingItem), 1); // Удаляем товар, если количество 1
                 }
+                localStorage.setItem('cart', JSON.stringify(cart)); // Сохраняем изменения
                 updateCartDisplay();
             }
         } else if (event.target.classList.contains('remove-from-cart-button')) {
             const index = cart.findIndex(item => item.id == productId);
             if (index > -1) {
                 cart.splice(index, 1); // Удаляем товар из корзины
+                localStorage.setItem('cart', JSON.stringify(cart)); // Сохраняем изменения
                 updateCartDisplay();
             }
         }
@@ -83,6 +93,10 @@ document.addEventListener("DOMContentLoaded", function() {
         // Здесь можно добавить логику для оформления заказа, например, отправить данные на сервер
         alert('Заказ оформлен! Спасибо за покупку!');
         cart.length = 0; // Очищаем корзину после оформления заказа
+        localStorage.removeItem('cart'); // Удаляем корзину из localStorage
         updateCartDisplay();
     });
+
+    // И нициализация отображения корзины при загрузке страницы
+    updateCartDisplay();
 });

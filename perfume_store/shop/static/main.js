@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const apiUrl = '/api/product'; // Замените на реальный URL вашего API
+    const apiUrl = '/api/products'; // Замените на реальный URL вашего API
     const productContainer = document.querySelector('.product-container');
 
     fetch(apiUrl)
@@ -33,11 +33,17 @@ document.addEventListener("DOMContentLoaded", function() {
                 const addToCartButtons = document.querySelectorAll('.add-to-cart-button');
                 addToCartButtons.forEach(button => {
                     button.addEventListener('click', function() {
-                        const productId = this.getAttribute('data-product-id');
+                        // Исправлено: правильное имя атрибута 'data-product-id'
+                        const productId = this.getAttribute('data-product-id'); 
                         const product = data.find(p => p.id == productId); // Находим продукт по ID
 
-                        // Добавляем продукт в корзину
-                        addToCart(product);
+                        // Проверяем, найден ли продукт
+                        if (product) {
+                            // Добавляем продукт в корзину
+                            addToCart(product);
+                        } else {
+                            console.error('Продукт не найден');
+                        }
                     });
                 });
             }
@@ -48,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
 
     // Функция для добавления товара в корзину
-    function addToCart(product) {
+    function addToCart(product) { // Изменено имя параметра с products на product
         let cart = JSON.parse(localStorage.getItem('cart')) || []; // Получаем корзину из localStorage или создаем новую
 
         // Проверяем, есть ли уже этот продукт в корзине
