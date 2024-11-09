@@ -25,8 +25,16 @@ document.addEventListener("DOMContentLoaded", function() {
                         <h2 class="product-name">${product.name}</h2>
                         <p class="product-price">3мл 250₽ /60 мл 2500 ₽</p>
                         <button class="add-to-cart-button" data-product-id="${product.id}">Добавить в корзину</button>
+                        <button class="view-details-button" data-product-id="${product.id}">Подробнее</button>
                     `;
                     productContainer.appendChild(productCard);
+                });
+                const viewDetailsButtons = document.querySelectorAll('.view-details-button');
+                viewDetailsButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        const productId = this.getAttribute('data-product-id');
+                        window.location.href = `/product/${productId}`; // Замените на фактический URL для отображения деталей товара
+                    });
                 });
 
                 // Добавляем обработчик событий для кнопок "Добавить в корзину"

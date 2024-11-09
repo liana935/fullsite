@@ -1,3 +1,4 @@
+from django.shortcuts import render, get_object_or_404
 from django.shortcuts import render
 from django.http import JsonResponse
 from rest_framework.views import APIView
@@ -168,3 +169,6 @@ def zakaz_view(request):
     return render(request, 'zakaz.html')
 def yspex_view(request):
     return render(request, 'yspex.html')
+def product_detail_view(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+    return render(request, 'product_detail.html', {'product': product})

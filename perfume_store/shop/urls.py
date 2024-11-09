@@ -12,4 +12,5 @@ urlpatterns = [
     path('zakaz', zakaz_view, name='zakaz'),
     path('yspex', yspex_view, name='yspex'),
     path('', main_view, name='main'),
+    path('product/<int:pk>/', ProductDetailAPIView.as_view(), name='product-detail'),
 ]
