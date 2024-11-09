@@ -10,48 +10,31 @@ document.addEventListener("DOMContentLoaded", function() {
             return response.json();
         })
         .then(data => {
-            // Очищаем контейнер перед добавлением новых продуктов
             productContainer.innerHTML = '';
 
-            // Проверяем, есть ли продукты
             if (data.length === 0) {
                 productContainer.innerHTML = '<p>Нет доступных продуктов.</p>';
             } else {
                 data.forEach(product => {
                     const productCard = document.createElement('div');
-                    productCard.classList.add('product-card');
+                    productCard.classList.add('product-card', 'bg-white', 'border', 'border-pink-500', 'rounded-lg', 'shadow-lg', 'p-4', 'm-2', 'cursor-pointer');
                     productCard.innerHTML = `
-                        <img src="${product.photo_url}" alt="${product.name}" class="product-image">
-                        <h2 class="product-name">${product.name}</h2>
-                        <p class="product-price">3мл 250₽ /60 мл 2500 ₽</p>
-                        <button class="add-to-cart-button" data-product-id="${product.id}">Добавить в корзину</button>
-                        <button class="view-details-button" data-product-id="${product.id}">Подробнее</button>
+                        <img src="${product.photo_url}" alt="${product.name}" class="product-image rounded-lg mb-2">
+                        <h2 class="product-name text-lg font-bold mb-1">${product.name}</h2>
+                        <button class="add-to-cart-button bg-pink-500 text-white rounded px-4 py-2">Добавить в корзину</button>
                     `;
                     productContainer.appendChild(productCard);
-                });
-                const viewDetailsButtons = document.querySelectorAll('.view-details-button');
-                viewDetailsButtons.forEach(button => {
-                    button.addEventListener('click', function() {
-                        const productId = this.getAttribute('data-product-id');
-                        window.location.href = `/product/${productId}`; // Замените на фактический URL для отображения деталей товара
-                    });
-                });
 
-                // Добавляем обработчик событий для кнопок "Добавить в корзину"
-                const addToCartButtons = document.querySelectorAll('.add-to-cart-button');
-                addToCartButtons.forEach(button => {
-                    button.addEventListener('click', function() {
-                        // Исправлено: правильное имя атрибута 'data-product-id'
-                        const productId = this.getAttribute('data-product-id'); 
-                        const product = data.find(p => p.id == productId); // Находим продукт по ID
-
-                        // Проверяем, найден ли продукт
-                        if (product) {
-                            // Добавляем продукт в корзину
-                            addToCart(product);
-                        } else {
-                            console.error('Продукт не найден');
-                        }
+                    // Добавляем обработчик события для alert
+                    productCard.addEventListener('click', function() {
+                        alert(`
+                            Название: ${product.name}
+                            Бренд: ${product.brand}
+                            Пол: ${product.gender}
+                            Группа: ${product.group_name}
+                            Ноты: ${product.notes}
+                            Описание: ${product.description}
+                        `);
                     });
                 });
             }
@@ -60,6 +43,7 @@ document.addEventListener("DOMContentLoaded", function() {
             console.error('Ошибка:', error);
             productContainer.innerHTML = '<p>Произошла ошибка при загрузке продуктов.</p>';
         });
+});
 
     // Функция для добавления товара в корзину
     function addToCart(product) { // Изменено имя параметра с products на product
@@ -79,4 +63,3 @@ document.addEventListener("DOMContentLoaded", function() {
         localStorage.setItem('cart', JSON.stringify(cart));
         alert(`${product.name} добавлен в корзину!`); // Уведомление о добавлении
     }
-});
