@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>{% block title %}Магазин Парфюмерии{% endblock %}</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="{% static 'style.css' %}"> <!-- Подключите CSS здесь -->
+</head>
+<body>
+    <header>
+        <h1><a href="{% url 'home' %}">Корзина</a></h1>
+    </header>
+    <nav>
+        <!-- Навигация -->
+    </nav>
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+    <footer>
+        <p>© 2023 Магазин Парфюмерии. Все права защищены.</p>
+    </footer>
+</body>
+</html>
