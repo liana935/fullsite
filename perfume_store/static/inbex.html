@@ -15,8 +15,7 @@
             <i class="fas fa-phone-alt"></i>
             <span>+7 (999) 999-99-99</span>
         </div>
-        <h1>
-        </h1>
+        <h1></h1>
         <div class="cart">
             <i class="fas fa-shopping-cart"></i>
             <a class="text-gray-600" href="korzina.html">Корзина</a>
@@ -35,6 +34,14 @@
     </nav>
     <div class="container">
         <div id="content" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        
+        <!-- Контейнер для корзины -->
+        <div id="cart" style="display: none;"> <!-- Скрыт по умолчанию, если нужно -->
+            <h2>Корзина</h2>
+            <div id="cart-count">0</div> <!-- Элемент для отображения количества товаров в корзине -->
+            <div id="cart-items"></div> <!-- Контейнер для товаров в корзине -->
+            <button id="clear-cart-button">Очистить корзину</button> <!-- Кнопка для очистки корзины -->
+        </div>
     </div>
 </body>
 </html>

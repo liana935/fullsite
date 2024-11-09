@@ -80,54 +80,91 @@ header h1 a:hover {
     color: #000000;
 }
 
+/* Стили для поля ввода количества */
+.item-quantity {
+    width: 60px; /* Ширина поля ввода */
+    padding: 5px; /* Внутренние отступы */
+    border: 1px solid #ff69b4; /* Рамка */
+    border-radius: 5px; /* Закругленные углы */
+    text-align: center; /* Центрирование текста */
+    margin-left: 10px; /* Отступ слева */
+    transition: border-color 0.3s; /* Плавный переход цвета рамки */
+}
+
+.item-quantity:focus {
+    border-color: #ff1493; /* Цвет рамки при фокусе */
+    outline: none; /* Убираем стандартное обрамление */
+}
+
+/* Стили для кнопки удаления */
+.remove-item {
+    background-color: #ff4d4d; /* Цвет фона для кнопки удаления */
+    color: white; /* Цвет текста */
+    border: none; /* Убираем границу */
+    padding: 5px 10px; /* Отступы */
+    border-radius: 5px; /* Закругленные углы */
+    cursor: pointer; /* Курсор при наведении */
+    transition: background-color 0.3s; /* Плавный переход цвета фона */
+}
+
+.remove-item:hover {
+    background-color: #ff1a1a; /* Цвет фона при наведении */
+}
+
+/* Стили для кнопки оформления заказа */
 #checkout-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s, transform 0.2s;
-    display: block;
-    margin: 20px auto;
-}
-#clear-cart-button {
-    background-color: #ff0000;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s, transform 0.2s;
-    display: block;
-    margin: 20px auto;
+    background-color: #4CAF50; /* Основной цвет фона */
+    color: white; /* Цвет текста */
+    padding: 12px 20px; /* Увеличенные отступы для большей кнопки */
+    border: none; /* Убираем границу */
+    border-radius: 5px; /* Закругленные углы */
+    cursor: pointer; /* Курсор при наведении */
+    font-size: 1.2rem; /* Увеличенный размер шрифта */
+    transition: background-color 0.3s, transform 0.2s; /* Плавный переход */
+    display: block; /* Отображение в блочном формате */
+    margin: 20px auto; /* Центрирование кнопки */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень для глубины */
 }
 
-#clear-cart-button:hover {
-    background-color: #cc0000;
-    transform: scale(1.05);
-}
-
-#clear-cart-button:active {
-    transform: scale(0.95);
-}
 #checkout-button:hover {
-    background-color: #45a049;
-    transform: scale(1.05);
+    background-color: #45a049; /* Цвет фона при наведении */
+    transform: scale(1.05); /* Увеличение при наведении */
 }
 
 #checkout-button:active {
-    transform: scale(0.95);
+    transform: scale(0.95); /* Уменьшение при нажатии */
 }
 
+/* Стили для кнопки очистки корзины */
+#clear-cart-button {
+    background-color: #ff0000; /* Цвет фона для кнопки очистки корзины */
+    color: white; /* Цвет текста */
+    padding: 10px 15px; /* Отступы */
+    border: none; /* Убираем границу */
+    border-radius: 5px; /* Закругленные углы */
+    cursor: pointer; /* Курсор при наведении */
+    font-size: 1rem; /* Размер шрифта */
+    transition: background-color 0.3s, transform 0.2s; /* Плавный переход */
+    display: block; /* Отображение в блочном формате */
+    margin: 20px auto; /* Центрирование кнопки */
+}
+
+#clear-cart-button:hover {
+    background-color: #cc0000; /* Цвет фона при наведении */
+    transform: scale(1.05); /* Увеличение при наведении */
+}
+
+#clear-cart-button:active {
+    transform: scale(0.95); /* Уменьшение при нажатии */
+}
+
+/* Медиа-запрос для адаптивности */
 @media (max-width: 768px) {
     .container {
-        margin: 10px;
+        margin: 10px; /* Уменьшаем отступы на мобильных устройствах */
     }
 
     #content {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Один столбец для мобильных устройств */
     }
 }

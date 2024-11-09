@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             // Отправляем заказ на сервер
             const xhr = new XMLHttpRequest();
-            xhr.open('POST', '/api/orders/', true);
+            xhr.open('POST', '/api/orders', true);
             xhr.setRequestHeader('Content-Type', 'application/json');
 
             xhr.onload = function() {

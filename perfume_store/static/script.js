@@ -3,7 +3,7 @@ let cart = [];
 
 function fetchData() {
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', '/api/products/', true);
+    xhr.open('GET', '/api/products', true);
     xhr.onload = function() {
         if (xhr.status === 200) {
             const products = JSON.parse(xhr.responseText);
@@ -47,14 +47,14 @@ function addToCart(product) {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     
     const existingProductIndex = cart.findIndex(item => item.id === product.id);
-    
+    const productphoto = 
+
     if (existingProductIndex > -1) {
         // Если товар уже есть, увеличиваем количество
         cart[existingProductIndex].quantity += 1;
     } else {
         // Если товара нет, добавляем новый
         cart.push({
-            id: product.id,
             name: product.name,
             quantity: 1 // Указываем количество
         });
