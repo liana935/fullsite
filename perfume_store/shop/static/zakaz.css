@@ -8,7 +8,7 @@ body {
     background-color: #ffe6f2;
     border: 2px solid #ff66b2;
     border-radius: 10px;
-    padding: 20px;
+    padding: 30px; /* Увеличиваем отступы внутри карточки */
     max-width: 600px; /* Увеличиваем максимальную ширину */
     width: 100%; /* Устанавливаем ширину на 100% для адаптивности */
     margin: 50px auto;
@@ -21,7 +21,7 @@ h1 {
 
 label {
     display: block;
-    margin: 10px 0 5px;
+    margin: 15px 0 5px; /* Увеличиваем отступы между метками и полями ввода */
 }
 
 input {
@@ -29,6 +29,7 @@ input {
     padding: 10px;
     border: 1px solid #ff66b2;
     border-radius: 5px;
+    margin-bottom: 15px; /* Добавляем отступ снизу для полей ввода */
 }
 
 button {
@@ -38,6 +39,7 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin-top: 20px; /* Добавляем отступ сверху для кнопки */
 }
 
 button:hover {
