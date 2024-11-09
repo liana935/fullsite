@@ -4,6 +4,26 @@ from rest_framework.views import APIView
 from .models import Product, Cart, Order
 from .serializers import ProductSerializer, CartSerializer, OrderSerializer
 
+import requests
+from django.conf import settings
+
+# Ваш токен и ID чата
+TELEGRAM_BOT_TOKEN = '8132273221:AAEdG6WrNCBljDy9HqA0ec633lbpxoxUt4k'
+TELEGRAM_CHAT_ID = '-4574147356'
+
+def send_order_to_telegram(order):
+    # Извлекаем названия товаров из cart_items
+    item_names = [f"{item['name']} (количество: {item['quantity']})" for item in order['cart_items']]
+    items_list = "\n".join(item_names)  # Формируем строку с названиями товаров
+
+    message = f"Новый заказ:\nИмя: {order['name']}\nТелефон: {order['phone_number']}\nEmail: {order['email']}\nАдрес: {order['delivery_address']}\nТовары:\n{items_list}"
+    url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
+    payload = {
+        'chat_id': TELEGRAM_CHAT_ID,
+        'text': message
+    }
+    requests.post(url, json=payload)
+    
 class ProductListAPIView(APIView):
     def get(self, request):
         products = Product.objects.all()
@@ -87,17 +107,27 @@ class CartDetailAPIView(APIView):
             return JsonResponse({"error": "Cart not found"}, status=404)
 
 class OrderListAPIView(APIView):
-    def get(self, request):
-        orders = Order.objects.all()
-        serializer = OrderSerializer(orders, many=True)
-        return JsonResponse(serializer.data, safe=False)
-
     def post(self, request):
         serializer = OrderSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()
+            order = serializer.save()
+            send_order_to_telegram({
+                'name': order.name,
+                'phone_number': order.phone_number,
+                'email': order.email,
+                'delivery_address': order.delivery_address,
+                'cart_items': order.cart_items
+            })
             return JsonResponse(serializer.data, status=201)
         return JsonResponse(serializer.errors, status=400)
+
+    def delete(self, request, pk):
+        try:
+            order = Order.objects.get(pk=pk)
+            order.delete()
+            return JsonResponse({"message": "Order deleted"}, status=204)
+        except Order.DoesNotExist:
+            return JsonResponse({"error": "Order not found"}, status=404)
 
 class OrderDetailAPIView(APIView):
     def get(self, request, pk):

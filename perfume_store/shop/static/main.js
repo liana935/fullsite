@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     productCard.innerHTML = `
                         <img src="${product.photo_url}" alt="${product.name}" class="product-image">
                         <h2 class="product-name">${product.name}</h2>
-                        <p class="product-price">${product.price} ₽</p>
+                        <p class="product-price">3мл 250₽ /60 мл 2500 ₽</p>
                         <button class="add-to-cart-button" data-product-id="${product.id}">Добавить в корзину</button>
                     `;
                     productContainer.appendChild(productCard);
