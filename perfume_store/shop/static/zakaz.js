@@ -17,7 +17,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Извлекаем данные корзины из LocalStorage
         const cart = JSON.parse(localStorage.getItem('cart')) || []; // Получаем корзину
-        const cartId = cart.length > 0 ? cart[0].id : null; // Предположим, что у вас есть идентификатор товара в корзине
+
+        // Проверяем, есть ли товары в корзине
+        if (cart.length === 0) {
+            document.getElementById('message').innerText = 'Корзина пуста. Добавьте товары перед оформлением заказа.';
+            document.getElementById('message').classList.remove('hidden');
+            return;
+        }
 
         // Создаем объект заказа
         const order = {
@@ -25,7 +31,11 @@ document.addEventListener("DOMContentLoaded", function() {
             phone_number: phone,
             email: email,
             delivery_address: address,
-            cart: cartId // Добавляем идентификатор корзины
+            cart_items: cart.map(item => ({
+                id: item.id,
+                name: item.name,
+                quantity: item.quantity
+            })) // Добавляем данные о товарах из корзины
         };
 
         // Отправляем данные заказа на сервер
@@ -53,6 +63,7 @@ document.addEventListener("DOMContentLoaded", function() {
             document.getElementById('message').classList.remove('hidden');
         });
     });
+
 
     // Функция для очистки корзины
     function clearCart() {

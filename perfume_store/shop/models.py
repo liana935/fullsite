@@ -16,8 +16,8 @@ class Cart(models.Model):
     quantity = models.IntegerField()
 
 class Order(models.Model):
-    cart = models.ForeignKey(Cart, on_delete=models.CASCADE, null=True)  # Make it nullable for now
     name = models.CharField(max_length=255)
     phone_number = models.CharField(max_length=20)
     email = models.EmailField()
     delivery_address = models.TextField()
+    cart_items = models.JSONField(null=True)
