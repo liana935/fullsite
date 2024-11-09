@@ -9,14 +9,15 @@ document.addEventListener("DOMContentLoaded", function() {
         const address = document.getElementById('address').value.trim();
 
         // Проверяем, что все поля заполнены
-        if (!name || !phone || !email || !address) { // Проверка на поле phone
+        if (!name || !phone || !email || !address) {
             document.getElementById('message').innerText = 'Пожалуйста, заполните все поля.';
             document.getElementById('message').classList.remove('hidden');
             return;
         }
 
         // Извлекаем данные корзины из LocalStorage
-        const cartData = JSON.parse(localStorage.getItem('Cart')) || []; // Получаем данные корзины
+        const cart = JSON.parse(localStorage.getItem('cart')) || []; // Получаем корзину
+        const cartId = cart.length > 0 ? cart[0].id : null; // Предположим, что у вас есть идентификатор товара в корзине
 
         // Создаем объект заказа
         const order = {
@@ -24,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function() {
             phone_number: phone,
             email: email,
             delivery_address: address,
-            id: cartData,
+            cart: cartId // Добавляем идентификатор корзины
         };
 
         // Отправляем данные заказа на сервер
@@ -38,11 +39,8 @@ document.addEventListener("DOMContentLoaded", function() {
         })
         .then(response => {
             if (response.ok) {
-                // Успешное оформление заказа
                 document.getElementById('message').innerText = 'Заказ успешно оформлен!';
                 document.getElementById('message').classList.remove('hidden');
-
-                // Очищаем корзину
                 clearCart();
             } else {
                 return response.json().then(errorData => {
