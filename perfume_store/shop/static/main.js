@@ -42,12 +42,15 @@ document.addEventListener("DOMContentLoaded", function() {
                         
                         productModal.classList.remove('hidden'); // Показываем модальное окно
                     });
+
+                    // Сохраняем продукт в переменной, чтобы использовать его позже
+                    productCard.dataset.product = JSON.stringify(product);
                 });
             }
         })
         .catch(error => {
             console.error('Ошибка:', error);
- productContainer.innerHTML = '<p>Произошла ошибка при загрузке продуктов.</p>';
+            productContainer.innerHTML = '<p>Произошла ошибка при загрузке продуктов.</p>';
         });
 
     // Закрытие модального окна
@@ -64,13 +67,23 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Обработчик события для добавления товара в корзину
     addToCartButton.addEventListener('click', function() {
-        const productName = document.getElementById('modal-product-name').innerText;
-        const productImage = document.getElementById('modal-product-image').src;
-
-        // Добавляем товар в корзину
-        cart.push({ name: productName, image: productImage });
-        localStorage.setItem('cart', JSON.stringify(cart)); // Сохраняем корзину в localStorage
-
-        alert('Товар добавлен в корзину: ' + productName);
+        const productData = JSON.parse(document.querySelector('.product-card[data-product]').dataset.product);
+        addToCart(productData);
+        productModal.classList.add('hidden'); // Закрываем модальное окно после добавления товара
     });
-});
+
+    function addToCart(product) {
+        // Проверяем, есть ли уже этот продукт в корзине
+        const existingProductIndex = cart.findIndex(item => item.id === product.id);
+        if (existingProductIndex > -1) {
+            // Если продукт уже есть, увеличиваем количество
+            cart[existingProductIndex].quantity += 1;
+        } else {
+            // Если продукта нет, добавляем его в корзину с количеством 1
+            cart.push({ ...product, quantity: 1 });
+        }
+
+        // Сохраняем обновленную корзину в localStorage
+        localStorage.setItem('cart', JSON.stringify(cart));
+        alert(`${product.name} добавлен в корзину!`); // Уведомление о добав лении товара в корзину
+    }});
