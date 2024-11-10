@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function() {
             return;
         }
         // Перенаправление на страницу оформления заказа
-        window.location.href = '/checkout'; // Замените '/checkout' на фактический URL вашей страницы оформления заказа
+        window.location.href = '/zakaz'; // Замените '/checkout' на фактический URL вашей страницы оформления заказа
     });
 
     // Инициализация отображения корзины при загрузке страницы
