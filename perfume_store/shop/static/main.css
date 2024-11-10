@@ -35,6 +35,9 @@ header {
     color: white; /* Цвет текста */
 
 }
+.cart-button {
+    margin-top: 20px; /* Отступ сверху для кнопки корзины */
+}
 
 .cart-button a {
     color: white; /* Цвет текста для ссылки */
@@ -42,6 +45,7 @@ header {
     background-color: #ff66b2; /* Цвет фона для кнопки */
     padding: 10px 15px; /* Отступы внутри кнопки */
     border-radius: 5px; /* Скругление углов */
+    border: 2px solid #ff66b2; /* Розовая рамка */
 }
 
 .cart-button a:hover {
