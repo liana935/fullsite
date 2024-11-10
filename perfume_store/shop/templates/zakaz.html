@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="{% static 'zakaz.css' %}">
 </head>
 <body>
+    <header class="header">
+        <div class="header-container">
+            <div class="phone-number">Телефон: +7 (999) 999-99-99</div>
+        </div>
+    </header>
     <div class="order-card">
         <h1>Оформление заказа</h1>
         <form id="orderForm">
@@ -15,7 +20,7 @@
             <input type="text" id="name" required>
 
             <label for="phone">Номер телефона:</label>
-            <input type="tel" id="phone" required> <!-- Изменено на 'tel' -->
+            <input type="tel" id="phone" required>
 
             <label for="email">Email:</label>
             <input type="email" id="email" required>
@@ -24,9 +29,9 @@
             <input type="text" id="address" required>
 
             <button type="submit">Оформить заказ</button>
-            <button onclick="window.location.href='/'">Вернуться на главную</button> <!-- Кнопка возврата на главную -->
         </form>
         <div id="message" class="hidden"></div>
+        <button onclick="window.location.href='/'">Вернуться на главную</button> <!-- Кнопка возврата на главную -->
     </div>
 
     <script src="{% static 'zakaz.js' %}"></script>

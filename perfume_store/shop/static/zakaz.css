@@ -2,6 +2,31 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f8f0f8;
     color: #333;
+    margin: 0; /* Убираем отступы у body */
+    padding: 0; /* Убираем внутренние отступы у body */
+}
+
+.header {
+    background-image: url('https://avatars.dzeninfra.ru/get-zen_doc/1349008/pub_63879286111476652d5f0090_63879e7ddb3c406308ffc8bb/scale_1200'); /* Замените на путь к вашему изображению */
+    background-size: cover;
+    background-position: center;
+    height: 100px;
+    color: white;
+    display: flex;
+    align-items: center;
+    width: 100%; /* Устанавливаем ширину на 100% */
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between; /* Размещает элементы по краям */
+    align-items: center; /* Выравнивает элементы по вертикали */
+    padding: 10px;
+}
+
+.phone-number {
+    font-size: 16px; /* Размер шрифта для номера телефона */
+    color: white; /* Цвет текста */
 }
 
 .order-card {
@@ -11,7 +36,7 @@ body {
     padding: 30px; /* Увеличиваем отступы внутри карточки */
     max-width: 600px; /* Увеличиваем максимальную ширину */
     width: 100%; /* Устанавливаем ширину на 100% для адаптивности */
-    margin: 50px auto;
+    margin: 50px auto; /* Центрируем карточку с отступом сверху и снизу */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
