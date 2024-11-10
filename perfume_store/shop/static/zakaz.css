@@ -33,6 +33,7 @@ input {
 }
 
 button {
+    text-decoration: none;
     background-color: #ff66b2;
     color: white;
     padding: 10px;

@@ -51,6 +51,7 @@ document.addEventListener("DOMContentLoaded", function() {
             if (response.ok) {
                 document.getElementById('message').innerText = 'Заказ успешно оформлен!';
                 document.getElementById('message').classList.remove('hidden');
+                window.location.href = 'yspex'
                 clearCart();
             } else {
                 return response.json().then(errorData => {
