@@ -34,7 +34,8 @@ document.addEventListener("DOMContentLoaded", function() {
             cart_items: cart.map(item => ({
                 id: item.id,
                 name: item.name,
-                quantity: item.quantity
+                volume: item.volume, // Добавляем объем
+                quantity: item.quantity // Добавляем количество
             })) // Добавляем данные о товарах из корзины
         };
 
@@ -51,8 +52,8 @@ document.addEventListener("DOMContentLoaded", function() {
             if (response.ok) {
                 document.getElementById('message').innerText = 'Заказ успешно оформлен!';
                 document.getElementById('message').classList.remove('hidden');
-                window.location.href = 'yspex'
-                clearCart();
+                clearCart(); // Очистка корзины после успешного оформления
+                window.location.href = 'yspex'; // Перенаправление на страницу
             } else {
                 return response.json().then(errorData => {
                     throw new Error(errorData.message || 'Ошибка оформления заказа');
@@ -64,7 +65,6 @@ document.addEventListener("DOMContentLoaded", function() {
             document.getElementById('message').classList.remove('hidden');
         });
     });
-
 
     // Функция для очистки корзины
     function clearCart() {

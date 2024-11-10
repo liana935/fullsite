@@ -24,24 +24,25 @@
     </main>
 
     <!-- Модальное окно -->
-        <div id="product-modal" class="fixed inset-0 z-50 hidden bg-black bg-opacity-50 flex justify-center items-center overflow-y-auto">
-    <div class="bg-white rounded-lg p-4 max-w-lg mx-auto w-full max-h-screen overflow-y-auto">
-        <img id="modal-product-image" src="" alt="Product Image" class="rounded-lg mb-4 w-full h-auto max-h-60 object-contain">
-        <h2 id="modal-product-name" class="text-xl font-bold mb-2"></h2>
-        <p id="modal-product-brand" class="mb-2"></p>
-        <p id="modal-product-gender" class="mb-2"></p>
-        <p id="modal-product-group" class="mb-2"></p>
-        <p id="modal-product-notes" class="mb-2"></p>
-        <p id="modal-product-description" class="mb-4"></p>
-        <p id="modal-product-price" class="mb-2 text-lg font-semibold"></p> <!-- Цена -->
-        <div class="flex flex-col space-y-2">
-            <label for="product-quantity" class="mb-1">Количество:</label>
-            <input type="number" id="product-quantity" value="1" min="1" class="border rounded p-2 w-full" />
-            <button id="add-to-cart" class="bg-pink-500 text-white rounded px-4 py-2 w-full">Добавить в корзину</button>
-            <button id="close-modal" class="bg-gray-300 text-black rounded px-4 py-2 w-full">Закрыть</button>
+    <div id="product-modal" class="modal hidden">
+        <div class="modal-content">
+            <span id="close-modal" class="close">&times;</span>
+            <img id="modal-product-image" src="" alt="">
+            <h2 id="modal-product-name"></h2>
+            <p id="modal-product-brand"></p>
+            <p id="modal-product-gender"></p>
+            <p id="modal-product-group"></p>
+            <p id="modal-product-notes"></p>
+            <p id="modal-product-description"></p>
+            
+            <div>
+                <button class="volume-button" data-volume="3">3 мл</button>
+                <button class="volume-button" data-volume="60">60 мл</button>
+            </div>
+            
+            <button id="add-to-cart">Добавить в корзину</button>
         </div>
     </div>
-</div>
     <footer>
         <p>© 2024 Магазин Парфюмерии. Все права защищены.</p>
     </footer>

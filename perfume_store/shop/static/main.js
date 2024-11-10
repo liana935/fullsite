@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Получаем корзину из localStorage
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let selectedVolume = null; // Переменная для хранения выбранного объема
 
     fetch(apiUrl)
         .then(response => {
@@ -40,6 +41,12 @@ document.addEventListener("DOMContentLoaded", function() {
                         document.getElementById('modal-product-notes').innerText = `Ноты: ${product.notes}`;
                         document.getElementById('modal-product-description').innerText = `Описание: ${product.description}`;
                         
+                        // Сбрасываем выбранный объем
+                        selectedVolume = null;
+
+                        // Удаляем активный класс с кнопок объема
+                        document.querySelectorAll('.volume-button').forEach(btn => btn.classList.remove('active'));
+
                         // Сохраняем продукт в переменной модального окна
                         addToCartButton.dataset.product = JSON.stringify(product);
                         productModal.classList.remove('hidden'); // Показываем модальное окно
@@ -64,16 +71,32 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
+    // Обработчик события для кнопок объема
+    document.querySelectorAll('.volume-button').forEach(button => {
+        button.addEventListener('click', function() {
+            selectedVolume = this.dataset.volume; // Сохраняем выбранный объем
+            // Добавляем класс активной кнопке (для стилизации)
+            document.querySelectorAll('.volume-button').forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+
     // Обработчик события для добавления товара в корзину
     addToCartButton.addEventListener('click', function() {
+        if (!selectedVolume) {
+            alert('Пожалуйста, выберите объем товара.');
+            return;
+        }
+
         const productData = JSON.parse(this.dataset.product);
+        productData.volume = selectedVolume; // Добавляем выбранный объем к продукту
         addToCart(productData);
         productModal.classList.add('hidden'); // Закрываем модальное окно после добавления товара
     });
 
     function addToCart(product) {
         // Проверяем, есть ли уже этот продукт в корзине
-        const existingProductIndex = cart.findIndex(item => item.id === product.id);
+        const existingProductIndex = cart.findIndex(item => item.id === product.id && item.volume === product.volume);
         if (existingProductIndex > -1) {
             // Если продукт уже есть, увеличиваем количество
             cart[existingProductIndex].quantity += 1;

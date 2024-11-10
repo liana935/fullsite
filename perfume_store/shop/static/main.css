@@ -5,6 +5,7 @@ body {
     margin: 0;
     padding: 0;
 }
+
 header {
     display: flex;
     justify-content: space-between; /* Размещает элементы по краям */
@@ -23,18 +24,12 @@ header {
     display: flex;
     align-items: center;
 }
-.header-container {
-    display: flex;
-    justify-content: space-between; /* Размещает элементы по краям */
-    align-items: center; /* Выравнивает элементы по вертикали */
-    padding: 10px;
-}
 
 .phone-number {
     font-size: 16px; /* Размер шрифта для номера телефона */
     color: white; /* Цвет текста */
-
 }
+
 .cart-button {
     margin-top: 20px; /* Отступ сверху для кнопки корзины */
 }
@@ -51,6 +46,7 @@ header {
 .cart-button a:hover {
     background-color: #ff3385; /* Цвет фона при наведении */
 }
+
 .product-container {
     display: flex;
     flex-wrap: wrap;
@@ -104,22 +100,58 @@ footer {
     background-color: #ff66b2; /* Розовый цвет подвала */
     color: white;
 }
-#back-to-main-button {
-    display: block;
-    width: 100%;
-    background-color: #ff66b2; /* Розовая кнопка */
+
+/* Стили для модального окна */
+.modal {
+    position: fixed; /* Фиксированное позиционирование */
+    z-index: 1000; /* На переднем плане */
+    left: 0;
+    top: 0;
+    width: 100%; /* Полная ширина */
+    height: 100%; /* Полная высота */
+    overflow: auto; /* Прокрутка при необходимости */
+    background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный черный фон */
+}
+
+.modal-content {
+    background-color: white; /* Белый фон для содержимого модального окна */
+    margin: 15% auto; /* Отступ сверху и центрирование */
+    padding: 20px;
+    border: 1px solid #ff66b2; /* Розовая рамка */
+    border-radius: 10px; /* Скругление углов */
+    width: 80%; /* Ширина модального окна */
+    max-width: 500px; /* Максимальная ширина модального окна */
+}
+
+.close {
+    color: #aaa; /* Цвет для кнопки закрытия */
+ float: right; /* Выравнивание кнопки закрытия вправо */
+    font-size: 28px; /* Размер шрифта для кнопки закрытия */
+    font-weight: bold; /* Жирный шрифт */
+}
+
+.close:hover,
+.close:focus {
+    color: black; /* Цвет при наведении */
+    text-decoration: none; /* Убирает подчеркивание */
+    cursor: pointer; /* Указатель при наведении */
+}
+
+.volume-button {
+    background-color: #ff66b2; /* Розовая кнопка для выбора объема */
     color: white;
     border: none;
     border-radius: 5px;
     padding: 10px;
     cursor: pointer;
-    text-align: center;
-    text-decoration: none; /* Убираем подчеркивание */
-    font-size: 18px;
-    margin-top: 10px; /* Отступ сверху для разделения с кнопкой оформления заказа */
+    margin: 5px; /* Отступ между кнопками объема */
     transition: background-color 0.3s;
 }
 
-#back-to-main-button:hover {
+.volume-button:hover {
     background-color: #ff3385; /* Темнее при наведении */
+}
+
+.active {
+    background-color: #ff3385; /* Цвет для активной кнопки объема */
 }
