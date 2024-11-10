@@ -21,7 +21,22 @@ body {
     font-size: 16px; /* Размер шрифта для номера телефона */
     color: white; /* Цвет текста */
 }
+.back-button {
+    background-color: #ff66b2; /* Цвет фона кнопки */
+    color: white; /* Цвет текста кнопки */
+    padding: 10px 15px; /* Внутренние отступы кнопки */
+    border: none; /* Убираем границу */
+    border-radius: 5px; /* Закругленные углы */
+    cursor: pointer; /* Курсор в виде руки при наведении */
+    display: block; /* Отображение в блочном формате */
+    margin: 40px 1px; /* Центрируем кнопку с отступом сверху и снизу */
+    text-align: center; /* Центрируем текст в кнопке */
+    font-size: 16px; /* Размер шрифта */
+}
 
+.back-button:hover {
+    background-color: #ff3385; /* Цвет фона при наведении */
+}
 /* Стили для контейнера корзины */
 #cart-items {
     display: flex;
@@ -65,6 +80,7 @@ body {
 /* Стиль для кнопок */
 button {
     text-decoration: none;
+    font-size: 18px;
     background-color: #ff66b2; /* Розовый цвет фона кнопок */
     color: white; /* Цвет текста кнопок */
     border: none; /* Убираем границу */

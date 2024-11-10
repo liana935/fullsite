@@ -10,13 +10,11 @@
 </head>
 <body>
     <header class="header">
-        <div class="phone">Телефон: +7 (999) 999-99-99</div>
     </header>
-    
+    <button class="back-button" onclick="location.href='/'">Вернуться на главную</button>
     <div class="cart-container">
         <div id="cart-items"></div>
         <button id="checkout-button"><a href="{% url 'zakaz' %}">Оформить заказ</a></button>
-        <button id="back-to-main-button"><a href="{% url 'main' %}">Вернуться на главную</a></button>
     </div>
 
     <footer>

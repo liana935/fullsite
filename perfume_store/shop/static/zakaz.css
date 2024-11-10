@@ -7,7 +7,7 @@ body {
 }
 
 .header {
-    background-image: url('https://avatars.dzeninfra.ru/get-zen_doc/1349008/pub_63879286111476652d5f0090_63879e7ddb3c406308ffc8bb/scale_1200'); /* Замените на путь к вашему изображению */
+    background-image: url('https://avatars.dzeninfra.ru/get-zen_doc/1349008/pub_638f0f8');
     background-size: cover;
     background-position: center;
     height: 100px;
@@ -78,4 +78,42 @@ button:hover {
 #message {
     margin-top: 20px;
     color: #28a745;
+}
+
+/* Медиа-запросы для адаптации под мобильные устройства */
+@media (max-width: 480px) {
+    .header {
+        height: 80px; /* Уменьшаем высоту заголовка */
+    }
+
+    .header-container {
+        flex-direction: column; /* Размещаем элементы в колонку */
+        align-items: center; /* Центрируем элементы */
+    }
+
+    .phone-number {
+        font-size: 14px; /* Уменьшаем размер шрифта для номера телефона */
+    }
+
+    .order-card {
+        padding: 20px; /* Уменьшаем отступы внутри карточки */
+        margin: 20px auto; /* Уменьшаем отступы сверху и снизу */
+    }
+
+    h1 {
+        font-size: 1.5em; /* Уменьшаем размер заголовка */
+    }
+
+    label {
+        margin: 10px 0 5px; /* Уменьшаем отступы между метками и полями ввода */
+    }
+
+    input {
+        padding: 8px; /* Уменьшаем отступы в полях ввода */
+    }
+
+    button {
+        padding: 8px; /* Уменьшаем отступы в кнопках */
+        margin-top: 15px; /* Уменьшаем отступ сверху для кнопки */
+    }
 }
