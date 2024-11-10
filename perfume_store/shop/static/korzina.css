@@ -14,6 +14,7 @@ body {
     color: white;
     display: flex;
     align-items: center;
+    justify-content: center; /* Центрируем содержимое */
 }
 
 .phone-number {
@@ -103,16 +104,15 @@ nav ul li {
 nav ul li a {
     color: white; /* Цвет ссылок */
     text-decoration: none; /* Убираем подчеркивание */
-    font-size: 18px;
-}
+    font-size: 18px }
 
 /* Стили для футера */
 footer {
-    text-align:center;
+    text-align: center;
     padding: 10px;
-    background-color:#ff66b2;
-    color:rgb(255, 255, 255);
-    margin-top:20px; 
+    background-color: #ff66b2;
+    color: rgb(255, 255, 255);
+    margin-top: 20px; 
 }
 
 /* Стили для контейнера кнопок увеличения количества товара */
@@ -129,4 +129,42 @@ footer {
 /* Кнопка "Удалить" */
 .remove-button {
     margin-left: 10px; /* Отступ слева для кнопки "Удалить" */
+}
+
+/* Медиа-запросы для адаптации под мобильные устройства */
+@media (max-width: 600px) {
+    .header {
+        height: 80px; /* Уменьшаем высоту заголовка */
+    }
+
+    .phone-number {
+        font-size: 14px; /* Уменьшаем размер шрифта для номера телефона */
+    }
+
+    .cart-item {
+        flex-direction: column; /* Изменяем направление на колонку */
+        align-items: flex-start; /* Выравниваем элементы по левому краю */
+    }
+
+    .cart-item-image {
+        width: 60px; /* Уменьшаем ширину изображения */
+        height: 60px; /* Уменьшаем высоту изображения */
+    }
+
+    .cart-item h3 {
+        font-size: 1em; /* Уменьшаем размер шрифта заголовка */
+    }
+
+    nav ul li {
+        display: block; /* Располагаем элементы списка в столбик */
+        margin: 5px 0; /* Увеличиваем отступы между элементами */
+    }
+
+    nav ul li a {
+        font-size: 16px; /* Уменьшаем размер шрифта ссылок */
+    }
+
+    button {
+        padding: 5px; /* Уменьшаем внутренние отступы кнопок */
+    }
 }
