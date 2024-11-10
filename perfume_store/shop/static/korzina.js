@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     <img src="${item.photo_url}" alt="${item.name}" class="cart-item-image" />
                     <h3>${item.name}</h3>
                     <p>Цена: ${item.price} ₽</p>
-                    <p>Объем: ${item.quantity} мл</p> <!-- Изменено с Количество на Объем -->
+                    <p>Объем: ${item.volume} мл</p> <!-- Изменено на item.volume -->
                     <button class="remove-from-cart-button" data-product-id="${item.id}">Удалить</button>
                 `;
                 cartItemsContainer.appendChild(cartItem);
@@ -26,15 +26,19 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Функция для добавления товара в корзину
     function addToCart(product) {
-        const existingItem = cart.find(item => item.id === product.id);
-        const volumeInMl = product.volume; // Предположим, у вас есть поле volume в продукте, которое указывает объем в мл
-        if (existingItem) {
-            existingItem.quantity += volumeInMl; // Увеличиваем объем в мл, если товар уже в корзине
+        // Проверяем, есть ли уже этот продукт в корзине
+        const existingProductIndex = cart.findIndex(item => item.id === product.id && item.volume === product.volume);
+        if (existingProductIndex > -1) {
+            // Если продукт уже есть, увеличиваем объем
+            cart[existingProductIndex].quantity += parseInt(product.volume); // Увеличиваем объем на выбранный
         } else {
-            cart.push({ ...product, quantity: volumeInMl }); // Добавляем новый товар с объемом в мл
+            // Если продукта нет, добавляем его в корзину с объемом
+            cart.push({ ...product, quantity: parseInt(product.volume) }); // Сохраняем объем
         }
-        localStorage.setItem('cart', JSON.stringify(cart)); // Сохраняем корзину в localStorage
-        updateCartDisplay();
+
+        // Сохраняем обновленную корзину в localStorage
+        localStorage.setItem('cart', JSON.stringify(cart));
+        alert(`${product.name} добавлен в корзину!`); // Уведомление о добавлении товара в корзину
     }
 
     // Обработчик события для кнопок "Добавить в корзину"
@@ -53,28 +57,9 @@ document.addEventListener("DOMContentLoaded", function() {
     // Обработчик события для изменения количества товара
     cartItemsContainer.addEventListener('click', function(event) {
         const productId = event.target.dataset.productId;
-        const productVolume = event.target.dataset.volume; // Получаем объем
 
-        if (event.target.classList.contains('increase-quantity')) {
-            const existingItem = cart.find(item => item.id == productId && item.volume == productVolume);
-            if (existingItem) {
-                existingItem.quantity += 1; // Увеличиваем количество
-                localStorage.setItem('cart', JSON.stringify(cart)); // Сохраняем изменения
-                updateCartDisplay();
-            }
-        } else if (event.target.classList.contains('decrease-quantity')) {
-            const existingItem = cart.find(item => item.id == productId && item.volume == productVolume);
-            if (existingItem) {
-                if (existingItem.quantity > 1) {
-                    existingItem.quantity -= 1; // Уменьшаем количество, если больше 1
-                } else {
-                    cart.splice(cart.indexOf(existingItem), 1); // Удаляем товар, если количество 1
-                }
-                localStorage.setItem('cart', JSON.stringify(cart)); // Сохраняем изменения
-                updateCartDisplay();
-            }
-        } else if (event.target.classList.contains('remove-from-cart-button')) {
-            const index = cart.findIndex(item => item.id == productId && item.volume == productVolume);
+        if (event.target.classList.contains('remove-from-cart-button')) {
+            const index = cart.findIndex(item => item.id == productId);
             if (index > -1) {
                 cart.splice(index, 1); // Удаляем товар из корзины
                 localStorage.setItem('cart', JSON.stringify(cart)); // Сохраняем изменения

@@ -34,7 +34,8 @@ document.addEventListener("DOMContentLoaded", function() {
             cart_items: cart.map(item => ({
                 id: item.id,
                 name: item.name,
-                quantity: item.quantity // Это теперь объем в мл
+                quantity: item.quantity, // Это объем в мл
+                volume: item.volume // Добавляем объем для ясности
             }))
         };
 
