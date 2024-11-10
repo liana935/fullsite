@@ -14,14 +14,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 cartItem.classList.add('cart-item');
                 cartItem.innerHTML = `
                     <img src="${item.photo_url}" alt="${item.name}" class="cart-item-image" />
-                    <h3>${item.name} (${item.volume} мл)</h3> <!-- Отображаем объем -->
+                    <h3>${item.name}</h3>
                     <p>Цена: ${item.price} ₽</p>
-                    <p>Количество: 
-                        <button class="decrease-quantity" data-product-id="${item.id}" data-volume="${item.volume}">-</button> 
-                        ${item.quantity} 
-                        <button class="increase-quantity" data-product-id="${item.id}" data-volume="${item.volume}">+</button>
-                    </p>
-                    <button class="remove-from-cart-button" data-product-id="${item.id}" data-volume="${item.volume}">Удалить</button>
+                    <p>Объем: ${item.quantity} мл</p> <!-- Изменено с Количество на Объем -->
+                    <button class="remove-from-cart-button" data-product-id="${item.id}">Удалить</button>
                 `;
                 cartItemsContainer.appendChild(cartItem);
             });
@@ -30,11 +26,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Функция для добавления товара в корзину
     function addToCart(product) {
-        const existingItem = cart.find(item => item.id === product.id && item.volume === product.volume);
+        const existingItem = cart.find(item => item.id === product.id);
+        const volumeInMl = product.volume; // Предположим, у вас есть поле volume в продукте, которое указывает объем в мл
         if (existingItem) {
-            existingItem.quantity += 1; // Увеличиваем количество, если товар уже в корзине
+            existingItem.quantity += volumeInMl; // Увеличиваем объем в мл, если товар уже в корзине
         } else {
-            cart.push({ ...product, quantity: 1 }); // Добавляем новый товар
+            cart.push({ ...product, quantity: volumeInMl }); // Добавляем новый товар с объемом в мл
         }
         localStorage.setItem('cart', JSON.stringify(cart)); // Сохраняем корзину в localStorage
         updateCartDisplay();
