@@ -40,11 +40,10 @@ document.addEventListener("DOMContentLoaded", function() {
                         document.getElementById('modal-product-notes').innerText = `Ноты: ${product.notes}`;
                         document.getElementById('modal-product-description').innerText = `Описание: ${product.description}`;
                         
+                        // Сохраняем продукт в переменной модального окна
+                        addToCartButton.dataset.product = JSON.stringify(product);
                         productModal.classList.remove('hidden'); // Показываем модальное окно
                     });
-
-                    // Сохраняем продукт в переменной, чтобы использовать его позже
-                    productCard.dataset.product = JSON.stringify(product);
                 });
             }
         })
@@ -67,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Обработчик события для добавления товара в корзину
     addToCartButton.addEventListener('click', function() {
-        const productData = JSON.parse(document.querySelector('.product-card[data-product]').dataset.product);
+        const productData = JSON.parse(this.dataset.product);
         addToCart(productData);
         productModal.classList.add('hidden'); // Закрываем модальное окно после добавления товара
     });
@@ -85,5 +84,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Сохраняем обновленную корзину в localStorage
         localStorage.setItem('cart', JSON.stringify(cart));
-        alert(`${product.name} добавлен в корзину!`); // Уведомление о добав лении товара в корзину
-    }});
+        alert(`${product.name} добавлен в корзину!`); // Уведомление о добавлении товара в корзину
+    }
+
+    function updateCartDisplay() {
+        // Здесь вы можете реализовать логику для обновления отображения корзины
+        const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+        document.getElementById('cart-count').innerText = cartCount; // Обновляем счетчик корзины
+    }
+});
