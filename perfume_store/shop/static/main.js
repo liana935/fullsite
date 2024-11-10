@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Получаем корзину из localStorage
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    let selectedVolume = null; // Переменная для хранения выбранного объема
+    let selectedQuantity = null; // Переменная для хранения выбранного объема
 
     fetch(apiUrl)
         .then(response => {
@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         document.getElementById('modal-product-description').innerText = `Описание: ${product.description}`;
                         
                         // Сбрасываем выбранный объем
-                        selectedVolume = null;
+                        selectedQuantity = null;
 
                         // Удаляем активный класс с кнопок объема
                         document.querySelectorAll('.volume-button').forEach(btn => btn.classList.remove('active'));
@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Обработчик события для кнопок объема
     document.querySelectorAll('.volume-button').forEach(button => {
         button.addEventListener('click', function() {
-            selectedVolume = this.dataset.volume; // Сохраняем выбранный объем
+            selectedQuantity = this.dataset.volume; // Сохраняем выбранный объем
             // Добавляем класс активной кнопке (для стилизации)
             document.querySelectorAll('.volume-button').forEach(btn => btn.classList.remove('active'));
             this.classList.add('active');
@@ -83,36 +83,20 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Обработчик события для добавления товара в корзину
     addToCartButton.addEventListener('click', function() {
-        if (!selectedVolume) {
+        if (!selectedQuantity) {
             alert('Пожалуйста, выберите объем товара.');
             return;
         }
 
-        const productData = JSON.parse(this.dataset.product);
-        productData.volume = selectedVolume; // Добавляем выбранный объем к продукту
-        addToCart(productData);
-        productModal.classList.add('hidden'); // Закрываем модальное окно после добавления товара
-    });
+        const productData = JSON.parse(this.dataset .product);
+        const cartItem = {
+            ...productData,
+            quantity: selectedQuantity // Используем quantity вместо volume
+        };
 
-    function addToCart(product) {
-        // Проверяем, есть ли уже этот продукт в корзине
-        const existingProductIndex = cart.findIndex(item => item.id === product.id && item.volume === product.volume);
-        if (existingProductIndex > -1) {
-            // Если продукт уже есть, увеличиваем количество
-            cart[existingProductIndex].quantity += 1;
-        } else {
-            // Если продукта нет, добавляем его в корзину с количеством 1
-            cart.push({ ...product, quantity: 1 });
-        }
-
-        // Сохраняем обновленную корзину в localStorage
+        cart.push(cartItem);
         localStorage.setItem('cart', JSON.stringify(cart));
-        alert(`${product.name} добавлен в корзину!`); // Уведомление о добавлении товара в корзину
-    }
-
-    function updateCartDisplay() {
-        // Здесь вы можете реализовать логику для обновления отображения корзины
-        const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
-        document.getElementById('cart-count').innerText = cartCount; // Обновляем счетчик корзины
-    }
+        alert('Товар добавлен в корзину!');
+        productModal.classList.add('hidden'); // Скрываем модальное окно
+    });
 });

@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     <img src="${item.photo_url}" alt="${item.name}" class="cart-item-image" />
                     <h3>${item.name}</h3>
                     <p>Цена: ${item.price} ₽</p>
-                    <p>Объем: ${item.volume} мл</p> <!-- Изменено на item.volume -->
+                    <p>Объем: ${item.quantity} мл</p> <!-- Изменено на item.volume -->
                     <button class="remove-from-cart-button" data-product-id="${item.id}">Удалить</button>
                 `;
                 cartItemsContainer.appendChild(cartItem);
