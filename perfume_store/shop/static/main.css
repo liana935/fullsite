@@ -16,21 +16,24 @@ header {
 }
 
 .headerss {
-    background-image: url('https://avatars.dzeninfra.ru/get-zen_doc/1349008/pub_63879286111476652d5f0090_63879e7ddb3c406308ffc8bb/scale_1200'); /* Замените на путь к вашему изображению */
+    background-image: url('images/scale_120000000.jpg'); /* Замените на путь к вашему изображению */
     background-size: cover;
     background-position: center;
-    height: 100px;
+    height: 120px;
     color: white;
     display: flex;
     align-items: center;
 }
 
-.phone-number {
+.phone {
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: #ff66b2;
     font-size: 16px; /* Размер шрифта для номера телефона */
     color: white; /* Цвет текста */
 }
 
-.cart-button {
+.cart-button a {
     margin-top: 20px; /* Отступ сверху для кнопки корзины */
 }
 
@@ -45,6 +48,20 @@ header {
 
 .cart-button a:hover {
     background-color: #ff3385; /* Цвет фона при наведении */
+}
+
+.add-to-cart {
+    background-color: #ff66b2; /* Розовая кнопка */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-to-cart:hover {
+    background-color: #ff3385; /* Темнее при наведении */
 }
 
 .product-container {
