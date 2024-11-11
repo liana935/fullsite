@@ -154,6 +154,21 @@ footer {
     cursor: pointer; /* Указатель при наведении */
 }
 
+.volum-button {
+    background-color: #ff66b2; /* Розовая кнопка для выбора объема */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    margin: 5px; /* Отступ между кнопками объема */
+    transition: background-color 0.3s;
+}
+
+.volum-button:hover {
+    background-color: #ff3385; /* Темнее при наведении */
+}
+
 .volume-button {
     background-color: #ff66b2; /* Розовая кнопка для выбора объема */
     color: white;
